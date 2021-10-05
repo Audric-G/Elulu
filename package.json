@@ -1,0 +1,21 @@
+{
+  "name": "elulu-the-bot",
+  "version": "1.1.1",
+  "description": "A general purpose bot built as a hobby.",
+  "keywords": ["discord", "bot", "elulu"],
+  "main": "Bot.js",
+  "author": "Gieven#8031",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "discord.js": "12.3.1",
+    "fs-extra": "9.0.1",
+    "mysql": "2.18.1",
+    "ytdl-core": "3.3.0",
+    "ytsr": "1.0.1",
+    "ytdl-core-discord": "1.2.3"
+  },
+  "peerDependencies": {
+    "@discordjs/opus": "0.3.2"
+  }
+}
