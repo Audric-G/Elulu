@@ -31,7 +31,7 @@ for (const file of generalCommands){
 }
 
 for (const file of adminCommands){
-  const command = require(`./commands/general/${file}`);
+  const command = require(`./commands/admin/${file}`);
   client.commands.set(command.data.name, command);
   client.adminCommands[command.data.name] = command;
 }
