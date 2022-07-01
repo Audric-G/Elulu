@@ -1,25 +1,21 @@
-//AUTHOR: GIEVEN#8031
-//LAST UPDATED: 10/10/2021
-//DESCRIPTION: Handles the 'ready' event once. Checks if necessary folders exist
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// AUTHOR: GIEVEN#8031
+// LAST UPDATED: 7/1/2022
+// DESCRIPTION: Handles the 'ready' event once. Checks if necessary folders exist
+// ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+const workingDir = require('process').cwd();
+const { Deploy } = require('../utilities/deploy-commands.js');
 
 module.exports = {
     name: 'ready',
     once: true,
-    execute(client){
-        console.log(`||Logged in as ${client.user.tag}||\n>Did nothing unsuccessfully!\n`);
-        const fs = require('fs');
-        const workingDir = require('process').cwd();
-        const DataManager = require(`${workingDir}/utilities/DataManager`);
+    async execute(client){
+        console.log(`>Logged in as ${client.user.tag}\n>Did nothing unsuccessfully!\n`);
+        
+        // Check if the client application is loaded, if not fetch it.
+        if (!client.application?.owner) await client.application?.fetch();
 
-        if (!fs.existsSync(`${workingDir}/data/guilds`)){
-            fs.mkdirSync(`${workingDir}/data/guilds`, {recursive:true}, (err) => console.error(err));
-        }
-    
-        if (!fs.existsSync(`${workingDir}/data/users`)){
-            fs.mkdirSync(`${workingDir}/data/users`, {recursive:true}, (err) => console.error(err));
-        }
-
-        DataManager.CheckClientGuildMap(client.guilds.cache);
-    },
+        // Deploy commands for each guild, sending a COPY of the client commands in an array.
+        Deploy('650500852515209236', [...client.commands]).then(val => console.log(val));
+    }
 };
+

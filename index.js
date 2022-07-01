@@ -1,39 +1,40 @@
-//AUTHOR: GIEVEN#8031
-//LAST UPDATED: 10/10/2021
-//DESCRIPTION: General bot.
-//Version: 2.0.0
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// AUTHOR: GIEVEN#8031
+// LAST UPDATED: 7/1/2022
+// DESCRIPTION: Runs on startup.
+// Version: 2.0.1
+// ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+// TO-DO: -WHY ARE PERMISSIONS NOT WORKING!!!!!!!
+//        -ADD FUNCTIONALITY BACK
+//        -IMPLEMENT DATABASE... AGAIN
 
-const fs = require('fs');
-const { Client, Collection, Intents } = require('discord.js')
-const { token } = require('./auth.json');
+const fs = require("fs");
+const { Client, Collection, Intents } = require('discord.js');
+const { token } =  require('./config.json');
 
-const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES],});
+const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 client.commands = new Collection();
-client.adminCommands = {};
 
-const eventFiles = fs.readdirSync('./events').filter(file => file.endsWith('.js'));
-const generalCommands = fs.readdirSync('./commands/general').filter(file => file.endsWith('.js'));
-const adminCommands = fs.readdirSync('./commands/admin').filter(file => file.endsWith('.js'));
-
-for (const file of eventFiles){
+//READ EVENT FILES AND CONNECT TO DISCORD API
+fs.readdirSync('./events').filter(file => file.endsWith('.js')).forEach(file => {
   const event = require(`./events/${file}`);
   if (event.once){
     client.once(event.name, (...args) => event.execute(...args));
   } else {
     client.on(event.name, (...args) => event.execute(...args));
   }
-}
+});
 
-for (const file of generalCommands){
-  const command = require(`./commands/general/${file}`);
-  client.commands.set(command.data.name, command); 
-}
+//READ PUBLIC COMMANDS AND CACHE TO CLIENT.COMMANDS
+fs.readdirSync('./commands/public').filter(file => file.endsWith('.js')).forEach(file => {
+  const command = require(`./commands/public/${file}`);
+  client.commands.set(command.data.name, command);
+});
 
-for (const file of adminCommands){
+//READ ADMIN COMMANDS AND CACHE TO CLIENT.COMMANDS
+fs.readdirSync('./commands/admin').filter(file => file.endsWith('.js')).forEach(file => {
   const command = require(`./commands/admin/${file}`);
   client.commands.set(command.data.name, command);
-  client.adminCommands[command.data.name] = command;
-}
+});
 
-client.login(token);//Login bot
+// Login bot
+client.login(token);
