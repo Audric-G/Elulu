@@ -1,5 +1,5 @@
 // AUTHOR: GIEVEN#8031
-// LAST UPDATED: 7/1/2022
+// LAST UPDATED: 7/6/2022
 // DESCRIPTION: Test!
 // ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -15,5 +15,4 @@ module.exports = {
         const embed = createEmbed('Supposedly Restricted Command Test, may or may not be working.');
         interaction.reply({ embeds: [embed] });
     },
-    permissionType: "admin",
 }

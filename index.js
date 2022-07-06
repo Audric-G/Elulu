@@ -1,10 +1,9 @@
 // AUTHOR: GIEVEN#8031
 // LAST UPDATED: 7/1/2022
 // DESCRIPTION: Runs on startup.
-// Version: 2.0.1
+// Version: 2.0.2
 // ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-// TO-DO: -WHY ARE PERMISSIONS NOT WORKING!!!!!!!
-//        -ADD FUNCTIONALITY BACK
+// TO-DO: -ADD FUNCTIONALITY BACK
 //        -IMPLEMENT DATABASE... AGAIN
 
 const fs = require("fs");

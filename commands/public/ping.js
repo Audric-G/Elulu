@@ -1,5 +1,5 @@
 // AUTHOR: GIEVEN#8031
-// LAST UPDATED: 7/1/2022
+// LAST UPDATED: 7/6/2022
 // DESCRIPTION: Pong!
 // ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -9,11 +9,9 @@ const createEmbed = require('../../utilities/embed').create;
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('ping')
-        .setDescription('Pongs the user.')
-        .setDefaultPermission(true),
+        .setDescription('Pongs the user.'),
     async execute(interaction){
         const embed = createEmbed('Pong!')
         interaction.reply({ embeds: [embed] });
-    },
-    permissionType: "public"
+    }
 }

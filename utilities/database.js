@@ -1,24 +1,25 @@
 // AUTHOR: GIEVEN#8031
-// LAST UPDATED: 7/1/2022
+// LAST UPDATED: 7/6/2022
 // DESCRIPTION: Handles data storage and fetching.
 // ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-// TO-DO: IMPLEMENT DATABASE, CURRENTLY HARD CODING AN OBJECT FOR TESTING
 
-const fs = require('fs');
-
-const GUILDS = {
+//TEMP TESTING """""""DATABASE"""""""
+//mapped by guild id.
+let guilds = {
     "650500852515209236": {
-        id: "650500852515209236",
-        name: "Nutlandia",
-        nsfwEnabled: false,
-        adminRole: "651197737655730216",
-        publicRole: "651027205052301312",
-        restrictPublic: false,
+        id: "650500852515209236",               //Id of guild
+        name: "Nutlandia",                      //Name of guild
+        nsfwEnabled: false,                     //Enables or disables nsfw commands
+        adminRole: "651197737655730216",        //Specifies admin role for access to admin level commands
+        publicRole: "",                         //Specifies public role for access to public commands in restricted mode
+        restrictedRole: "",                     //Specifies restricted role for denying access to commands to specific members
+        defaultRestrictPublicCommands: false,   //Enables or disables restricted mode by default
     }
 }
 
 module.exports = {
-    GetGuild: function(guildID){
-        return GUILDS[guildID];
+    GetGuild: function(guildId){ return new Promise((resolve, reject) => {
+        resolve(guilds[guildId]);
+    })
     },
 }

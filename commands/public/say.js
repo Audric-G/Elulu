@@ -1,5 +1,5 @@
 // AUTHOR: GIEVEN#8031
-// LAST UPDATED: 7/1/2022
+// LAST UPDATED: 7/6/2022
 // DESCRIPTION: Repeats whatever the user says.
 // ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -10,7 +10,6 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName('say')
         .setDescription('Repeats what the user says')
-        .setDefaultPermission(true)
         .addStringOption(option => 
             option.setName('input')
                 .setDescription('Input given by user.')
@@ -18,6 +17,5 @@ module.exports = {
     async execute(interaction){
         const embed = createEmbed(interaction.options.getString('input'));
         interaction.reply({ embeds: [embed] });
-    },
-    permissionType: "public",
+    }
 }
