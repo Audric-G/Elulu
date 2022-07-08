@@ -10,6 +10,7 @@ const ADMIN_COMMANDS_FOLDER = `${process.cwd()}\\commands\\admin`;
 
 //Define and create singleton CommandManager
 class CommandManager {
+    /* commands */
     constructor() {
         this.RefreshCommands();
     }
@@ -57,7 +58,7 @@ class CommandManager {
             const rest = new REST({ version: 9 }).setToken(token);
 
             //Upload commands to guild application then set customized guild permissions if available
-            await rest.put(Routes.applicationGuildCommands(applicationId, guild.id), { body: this.commands.map(command => command.data) }).then(() => {
+            rest.put(Routes.applicationGuildCommands(applicationId, guild.id), { body: this.commands.map(command => command.data) }).then(() => {
                 return this.SetGuildPermissions(guild);
             }).then(message => {
                 resolve(`ID: ${guild.id}\n\t-${message}\n\t-Successfully Updated Guild Commands.`);

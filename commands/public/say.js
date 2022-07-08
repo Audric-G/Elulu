@@ -15,7 +15,8 @@ module.exports = {
                 .setDescription('Input given by user.')
                 .setRequired(true)),
     async execute(interaction){
-        const embed = createEmbed(interaction.options.getString('input'));
-        interaction.reply({ embeds: [embed] });
+        return new Promise((resolve, reject) => {
+            resolve(interaction.options.getString('input'));
+        });
     }
 }

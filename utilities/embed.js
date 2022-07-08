@@ -1,7 +1,7 @@
-//AUTHOR: GIEVEN#8031
-//LAST UPDATED: 10/10/2021
-//DESCRIPTION: Returns the input given as an embed object. No there's no point to it I just like how embeds look.
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// AUTHOR: GIEVEN#8031
+// LAST UPDATED: 10/10/2021
+// DESCRIPTION: Returns the input given as an embed object. No there's no point to it I just like how embeds look.
+// ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 const Discord = require('discord.js');
 

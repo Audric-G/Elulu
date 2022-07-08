@@ -2,6 +2,7 @@
 //LAST UPDATED: 10/10/2021
 //DESCRIPTION: Handles the 'interactionCreate' event.
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+const createEmbed = require('../../utilities/embed').create;
 
 module.exports = {
     name: 'interactionCreate',
@@ -13,13 +14,16 @@ module.exports = {
         if(!command){
             await interaction.reply('You speak funny words, magic man.');
             return;
-        } 
-
-        try{
-            await command.execute(interaction);
-        } catch (err){
-            console.error(err);
-            await interaction.reply('Ruh Roh, something went very fucky wucky.');
         }
+
+        let embed;
+
+        command.execute(interaction).then(message => {
+            embed = createEmbed(message);
+        }).catch(err => {
+            embed = createEmbed(err);
+        }).finally(() => {
+            interaction.reply({ embeds: [embed]});
+        });
     }
 }

@@ -10,8 +10,9 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName('ping')
         .setDescription('Pongs the user.'),
-    async execute(interaction){
-        const embed = createEmbed('Pong!')
-        interaction.reply({ embeds: [embed] });
+    async execute(){
+        return new Promise((resolve, reject) => {
+            resolve('Pong!');
+        });
     }
 }
