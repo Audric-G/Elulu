@@ -8,7 +8,7 @@ module.exports = {
     once: false,
     async execute(interaction){
         if (!interaction.isCommand()) return;
-        const command = interaction.client.commands.get(interaction.commandName);
+        const command = interaction.client.CommandManager.commands.get(interaction.commandName);
 
         if(!command){
             await interaction.reply('You speak funny words, magic man.');
